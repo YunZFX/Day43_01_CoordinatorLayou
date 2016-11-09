@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+实现标题栏的隐藏与显示：
+（如何实现上滑时隐藏标题栏，下滑到顶时又滑出标题栏效果：那么listView的效果不能使用ListFragment来嘻嘻，而使用用recyclerview实现）
+        1. 将CoordinatorLayout作为根标签
+        2. 添加子标签AppBarLayout
+        3. 在AppBarLayout中添加子标签Toolbar和TabLayout（同时在java文件中隐藏系统标题栏）
+        4. 给Viewpager添加一个属性app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        作用；设置让ViewPager显示在AppBarlayout的下方，在这里below无效
+        5. 给Toolbar和TabLayout设置属性app:layout_scrollFlags
+        作用：设置是否让当前控件滚动出屏幕
+-->
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gaohonglin.day43_01_coordinatorlayout.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appberlayout"
+        android:orientation="vertical"
+        >
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/toolbar"
+            app:title="我是ToolBar"
+            app:layout_scrollFlags="scroll"
+            ></android.support.v7.widget.Toolbar>
+        <!--android:layout_height="?attr/actionBarSize"  代表让Toolbar的高度为系统默认标题栏的高度-->
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tablelayout"
+            ></android.support.design.widget.TabLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        ></android.support.v4.view.ViewPager>
+</android.support.design.widget.CoordinatorLayout>
